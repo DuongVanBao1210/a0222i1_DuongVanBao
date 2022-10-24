@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<head th:fragment="head(title)" >
+    <title th:text="${title}"></title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+          integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+            crossorigin="anonymous"></script>
+    <style>
+        span, .red {
+            color: red;
+        }
+
+        .title {
+
+            font-family: 'Baskerville Old Face';
+            color: black;
+            text-align: center;
+            font-weight: bold;
+            font-size: 50px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+
+        body {
+            background-color: #3dffd3;
+        }
+
+        h1{
+            text-align: center;
+            font-size: 50px;
+            color: royalblue;
+        }
+
+
+        /*navbar*/
+        .navbar {
+            /*overflow: hidden;*/
+            background-color: black;
+            padding: 20px 10px;
+        }
+
+        .navbar-brand {
+            font-size: 45px !important;
+            font-weight: bold;
+            color: orange;
+        }
+
+        .navbar > * {
+            float: left;
+            color: black;
+            text-align: center;
+            padding-left: 12px;
+            text-decoration: none;
+            font-size: 22px;
+            /*line-height: 25px;*/
+            /*border-radius: 4px;*/
+        }
+    </style>
+</head>
+
+
+<div  th:fragment="navbar">
+
+    <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
+        <a class="navbar-brand" style="color: orange" th:href="@{/}">My Music</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <!--                <li class="nav-item active">-->
+                <!--                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
+                <!--                </li>-->
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/create}">Thêm Moi </a>
+                </li>
+                <li class="nav-item dropdown" style="position: relative">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownList" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Catagoties
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownList">
+                        <a class="dropdown-item" th:href="@{/category/list}"> Danh sach</a>
+                        <a class="dropdown-item" th:href="@{/category/create}">Thêm Danh Mục</a>
+
+                        <!--                        <div class="dropdown-divider"></div>-->
+                        <!--                        <a class="dropdown-item" href="#">fsdfe</a>-->
+                    </div>
+                </li>
+                <!--                <li class="nav-item">-->
+                <!--                    <a class="nav-link disabled" href="#">Disabled</a>-->
+                <!--                </li>-->
+            </ul>
+<!--            <form th:method="post" th:action="@{/blogs/search}" class="form-inline my-2 my-lg-0">-->
+<!--                <input class="form-control mr-lg-2" type="search" name="search" placeholder="Search" aria-label="Search"-->
+<!--                       th:text="${search}">-->
+<!--                <button class="btn btn-outline-success my-2 my-lg-0" type="submit">Search</button>-->
+<!--            </form>-->
+        </div>
+    </nav>
+
+</div>
+
+
+
+
+
+</body>
+</html>
