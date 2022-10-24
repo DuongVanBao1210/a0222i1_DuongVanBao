@@ -34,14 +34,13 @@ public class BlogController {
     }
 
     @PostMapping("/create")
-    public  String create(@ModelAttribute(value = "blog") Blog blog, Model model){
+    public  String create(@ModelAttribute("blog") Blog blog, Model model){
         service.create(blog);
         return "redirect:/blogs/home";
     }
 
     @GetMapping("/delete")
     public String delete(@RequestParam(value = "id") String id ){
-
         service.delete(id);
         return "redirect:/blogs/home";
     }
@@ -53,23 +52,19 @@ public class BlogController {
         model.addAttribute("themes", service.getAllTheme());
         return "update";
     }
-
     @PostMapping("/edit")
     public  String edit(@ModelAttribute(value = "blog") Blog blog){
         service.update(blog);
         return "redirect:/blogs/home";
     }
-
     @PostMapping("/search")
     public String search(@RequestParam(value = "search") String search, Model model){
-
         List<Blog> list = service.findAll();
         List<Blog> blogs = new ArrayList<>();
         for ( Blog l: list ) {
             if(  l.getTitle().contains( search.trim()  ) ){
                 blogs.add(l);
             }
-
         }
         model.addAttribute("blogs",blogs );
         model.addAttribute("search",search );

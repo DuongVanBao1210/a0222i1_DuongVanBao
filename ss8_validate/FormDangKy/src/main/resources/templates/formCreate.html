@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{template::header('trang chủ')}">
+
+</head>
+
+<body>
+<div th:replace="~{template::pageloader}"></div>
+<form method="post" th:action="@{/dangky/create}" th:object="${user}" class="container">
+
+
+    <div class="form-row">
+        <div class="col-lg-12 mb-4">
+            <label>firstname <span class="red"> (*)</span> </label>
+            <input type="text" rows="5" th:field="*{firstname}" class="form-control"></input>
+            <span th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"></span>
+
+        </div>
+
+        <div class="col-lg-12 mb-4">
+            <label>lastname <span class="red"> (*)</span> </label>
+            <input type="text" rows="5" th:field="*{lastname}" class="form-control"></input>
+            <span th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></span>
+
+        </div>
+
+    </div>
+
+
+    <div class="form-row">
+        <div class="col-lg-12 mb-4">
+            <label>age <span class="red"> (*)</span> </label>
+            <input th:field="*{age}" type="number" class="form-control">
+            <span th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></span>
+
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <label>birthdate</label>
+            <input th:field="*{birthdate}" name="customer_birthday" type="date" class="form-control"
+                   placeholder="dd-mm-yyyy" min="1997-01-01" max="2030-12-31" required>
+        </div>
+
+    </div>
+
+
+    <div class="form-row">
+        <div class="col-lg-12 mb-4">
+            <label>email <span class="red"> (*)</span> </label>
+            <input th:field="*{email}" type="text" class="form-control">
+            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+
+        </div>
+
+
+    </div>
+
+    <input type="submit" class="btn btn-outline-success my-2 my-lg-0" value="Save">
+    <input type="button" class="btn btn-outline-success my-2 my-lg-0" value="Go Back" onclick="history.back()"/>
+
+
+</form>
+
+
+</body>
+</html>

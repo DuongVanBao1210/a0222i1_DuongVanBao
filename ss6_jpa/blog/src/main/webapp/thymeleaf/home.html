@@ -177,33 +177,24 @@
 <div style="margin-top: 30px" >
     <div th:each="o : ${blogs}" class="box-container">
         <div th:object="${o}"   class="box" >
-
-
                 <div class="column">
                     <div class="card">
                         <h3  th:text="*{title}"  class="card-title"></h3>
                         <h5 class="card-subtitle mb-2 text-muted ml-2 " style="text-align: left"  th:text="*{title }" > </h5>
-
                         <div class="card-body" style="height: 100px; width: 100%;  display:block; margin: 0 ">
-                                <h6 th:text="*{content}"   > </h6>
+                                <h6 th:text="*{content}"></h6>
                         </div>
-
                         <div style="margin-bottom: 10px; margin-top: 10px" >
                             <ul class="exam-container">
                                 <li class="exam-element flex-grow-ele1" style="flex-grow: 5;" >
-
                                     <a th:href="@{/blogs/detail(id=*{id})}">
                                         <button class="btn btn-primary btn-lg"  style="background: orange;color: white; width: 80px"> Xem   </button>
                                     </a>
-
                                 </li>
-
                                 <li class="exam-element flex-grow-ele2" style="flex-grow: 5;" >
-
                                     <a onclick="return confirm('Bạn có chắc chắn muốn xoá？');"
                                        th:href="@{/blogs/delete(id=*{id})}"  >
                                         <button class="btn btn-primary btn-lg" style="background: orange;color: white; width: 80px"> Xoa </button>  </a>
-
                                 </li>
 
                             </ul>

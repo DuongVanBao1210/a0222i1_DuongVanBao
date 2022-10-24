@@ -1,0 +1,27 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create </title>
+</head>
+<body>
+<h1>Create new Product</h1>
+<!--<a th:href="@{/product/list}">Back to list</a>-->
+<form th:action="@{/product/createClass}" method="post" th:object="${class}">
+    <table border="1">
+
+        <tr>
+            <td>ID</td>
+            <td><input type="text" th:field="*{classId}"></td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td><input type="text" th:field="*{name}"></td>
+        </tr>
+        <input type="submit" class="" value="Register" />
+        <input type="submit" value="Go Back" onclick="history.back()" />
+
+
+
+    </table>
+</form>
+</body>
+</html>

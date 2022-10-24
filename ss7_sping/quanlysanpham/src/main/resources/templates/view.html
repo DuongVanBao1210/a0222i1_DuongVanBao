@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 style="text-align: center; font-size: 50px; color: royalblue" >Chi tiet san pham</h1>
+<form method="post" th:action="@{/product/update}" th:object="${product}">
+    <table border="1" >
+        <tr  >
+            <td>ID</td>
+            <td><input type="text" th:field="*{id}" readonly ></td>
+        </tr>
+
+        <tr>
+            <td>Name</td>
+            <td><input type="text" th:field="*{name}" ></td>
+        </tr>
+
+        <tr>
+            <td>Price</td>
+            <td><input type="number" th:field="*{price}"></td>
+        </tr>
+
+        <tr>
+            <td>Class Name</td>
+            <td>
+                <select th:field="*{className.classId}">
+                    <option value="">All</option>
+                    <option th:each="class : ${classNames}"
+                            th:value="${class.classId}"
+                            th:text="${class.name}"
+                            th:selected="${class.classId.equals(product.className.classId ) }" />
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>ExpiryDate</td>
+            <td><input type="date" th:field="*{expiryDate}"></td>
+        </tr>
+
+        <tr>
+            <td>Country</td>
+            <td><input type="text" th:field="*{country}"></td>
+        </tr>
+
+
+        <tr>
+            <td>Status</td>
+            <td>
+                <input type="radio" th:field="*{status}" th:value="true" id="male" th:selected="*{status}"  >
+                <label  for="male"> Sold on</label>
+
+                <input type="radio" th:field="*{status}" th:value="false" id="female" th:selected="*{!status}" >
+                <label  for="female"> Sold Out </label>
+            </td>
+        </tr>
+
+
+        </tr>
+    </table>
+    <a th:href="@{/product/list/}">Back to list</a>
+    <input type="submit" value="Update">
+
+</form>
+
+</body>
+</html>

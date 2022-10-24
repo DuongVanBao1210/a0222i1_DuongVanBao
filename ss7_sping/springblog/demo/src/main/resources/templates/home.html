@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+          integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+          crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+            crossorigin="anonymous"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: rgb(255, 225, 185);
+        }
+
+        /* Float four columns side by side */
+        .column {
+            float: left;
+            width: 25%;
+        }
+
+        /* Clear floats after the columns */
+        /*.row:after {*/
+        /*    content: "";*/
+        /*    display: table;*/
+        /*    clear: both;*/
+        /*}*/
+        /*!* Responsive columns *!*/
+        /*@media screen and (max-width: 600px) {*/
+        /*    .column {*/
+        /*        width: 100%;*/
+        /*        display: block;*/
+        /*        margin-bottom: 20px;*/
+        /*    }*/
+        /*}*/
+
+
+        /* Style the counter cards */
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            padding-left: 0px;
+            padding-right: 0px;
+            left: 0px;
+            right: 0px;
+            margin-left: 25px;
+            margin-right: 25px;
+            margin-bottom: 30px;
+            padding-right: 0px;
+            text-align: center;
+            background-color: #f1f1f1;
+        }
+
+
+        .card-title {
+            width: 100%;
+            font-weight: bold;
+            color: royalblue;
+            margin-top: 6px;
+            margin-bottom: 0px;
+        }
+
+        .card-body {
+            height: 100px;
+            min-height: 80px;
+            overflow-y: hidden;
+        }
+
+        /*Phan nhóm thanh phan trong 1 button o card*/
+        .exam-container {
+            display: flex;
+            /*background: #ab7bb0;*/
+            padding: 4px;
+        }
+
+        .exam-element {
+            /*background-color: orangered;*/
+            margin: 1px;
+            /*color: white;*/
+            min-height: 40px;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+        }
+
+
+        /*navbar*/
+        .navbar {
+            /*overflow: hidden;*/
+            background-color: black;
+            padding: 20px 10px;
+        }
+
+        .navbar-brand {
+            font-size: 45px !important;
+            font-weight: bold;
+            color: orange;
+        }
+
+        .navbar > * {
+            float: left;
+            color: black;
+            text-align: center;
+            padding-left: 12px;
+            text-decoration: none;
+            font-size: 22px;
+            /*line-height: 25px;*/
+            /*border-radius: 4px;*/
+        }
+
+        .theme {
+            display: inline;
+            font-size: 18px;
+            color: grey;
+            font-style: italic;
+        }
+
+
+        @media screen and (max-width: 500px) {
+            .header a {
+                float: none;
+                display: block;
+                text-align: left;
+            }
+
+            .header-right {
+                float: none;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+
+<header>
+    <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
+        <a class="navbar-brand" style="color: orange" th:href="@{/blogs/home}">My Blog</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <!--                <li class="nav-item active">-->
+                <!--                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
+                <!--                </li>-->
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/blogs/create}">Thêm </a>
+                </li>
+                <li class="nav-item dropdown" style="position: relative">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownList" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Catagoties
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownList">
+                        <a class="dropdown-item" th:href="@{/category/list}"> Danh sach</a>
+                        <a class="dropdown-item" th:href="@{/category/create}">Thêm Danh Mục</a>
+
+                        <!--                        <div class="dropdown-divider"></div>-->
+                        <!--                        <a class="dropdown-item" href="#">fsdfe</a>-->
+                    </div>
+                </li>
+                <!--                <li class="nav-item">-->
+                <!--                    <a class="nav-link disabled" href="#">Disabled</a>-->
+                <!--                </li>-->
+            </ul>
+            <form th:method="post" th:action="@{/blogs/search}" class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-lg-2" type="search" name="search" placeholder="Search" aria-label="Search"
+                       th:text="${search}">
+                <button class="btn btn-outline-success my-2 my-lg-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+</header>
+
+<div style="margin-top: 30px">
+    <div class="box-container">
+        <th:block th:each="o : ${blogs}">
+            <div class="box">
+
+
+                <div class="column">
+                    <div class="card">
+                        <h3 th:text="${ o.title}" class="card-title"></h3>
+
+                        <span style="display: inline; font-size: 18px; color: grey; font-style: italic ; text-align: left; margin-left: 3px">Category:
+                            <span th:text="${o.category.getNameTheme()}"
+                                  class=" theme card-subtitle mb-2 text-muted ml-2 ">  </span>
+                            <span style="float: right; margin-right: 3px" th:text="${o.dateWrite}"></span>
+                        </span>
+
+                        <!--                        <span style="display: inline; font-size: 18px; color: grey; font-style: italic ; text-align: left; margin-left: 3px"  >Category:-->
+                        <!--                        <th:block th:each="ca: ${cate}" >-->
+                        <!--                            <span     th:if="${ca.idTheme== o.category.idTheme}" th:text="${ca.nameTheme}" class=" theme card-subtitle mb-2 text-muted ml-2 "     >  </span>-->
+                        <!--                        </th:block>-->
+                        <!--                            <span style="float: right; margin-right: 3px" th:text="${o.dateWrite}"></span>-->
+                        <!--                        </span>-->
+
+
+                        <div class="card-body" style="height: 100px; width: 100%;  display:block; margin: 0 ">
+                            <h6 th:text="${o.content}"></h6>
+                        </div>
+
+                        <div style="margin-bottom: 10px; margin-top: 10px">
+                            <ul class="exam-container">
+                                <li class="exam-element flex-grow-ele1" style="flex-grow: 5;">
+                                    <a th:href="@{/blogs/detail(id=${o.id})}">
+                                        <button class="btn btn-primary btn-lg"
+                                                style="background: orange;color: white; width: 80px"> Xem
+                                        </button>
+                                    </a>
+                                </li>
+
+                                <li class="exam-element flex-grow-ele2" style="flex-grow: 5;">
+                                    <a>
+                                        <button
+                                                th:onclick="showModelDelete( [[${o.id}]] ,[[ ${o.title}]])"
+                                                class="btn btn-primary btn-lg"
+                                                style="background: orange;color: white; width: 80px"
+                                                data-toggle="modal"
+                                                data-target="#modalDelete">
+                                            Xóa
+                                        </button>
+                                    </a>
+                                </li>
+
+                                <!--                                <li class="exam-element flex-grow-ele2" style="flex-grow: 5;" >-->
+                                <!--                                    <a onclick="return confirm('Bạn có chắc chắn muốn xoá？');"-->
+                                <!--                                       th:href="@{/blogs/delete(id=${o.id})}"  >-->
+                                <!--                                        <button class="btn btn-primary btn-lg" style="background: orange;color: white; width: 80px"> Xoa </button>  </a>-->
+                                <!--                                </li>-->
+
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </th:block>
+
+    </div>
+
+    <div class="modal fade" id="modalDelete" data-backdrop="static" data-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form method="post" th:action="@{/blogs/delete}" id="modelForm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Thong Bao</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+
+                    <div class="modal-body">
+                        <input hidden type="text" id="idDelete" name="idDelete">
+                        <span>Ban co muon xoa </span>
+                        <span class="text-danger" id="nameDelete"></span> khong?<span/>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Delete</button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        function showModelDelete(id, name) {
+            document.getElementById("idDelete").value = id;
+            document.getElementById("nameDelete").innerText = name;
+            // document.getElementById("modelForm").method = "post";
+
+        }
+    </script>
+
+
+</div>
+</body>
+</html>

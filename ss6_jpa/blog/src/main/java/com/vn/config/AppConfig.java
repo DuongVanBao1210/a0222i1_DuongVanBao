@@ -92,9 +92,9 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationCon
         DriverManagerDataSource datasource = new DriverManagerDataSource();
         datasource.setDriverClassName("com.mysql.jdbc.Driver");
 //      datasource.setUrl("jdbc:mysql://localhost:3306/a0921i1?useSSL=false&useUnicode=true&characterEncoding=utf8");
-        datasource.setUrl("jdbc:mysql://localhost:3306/codegym_blog_ss5?useSSL=false&useUnicode=true&characterEncoding=utf8");
+        datasource.setUrl("jdbc:mysql://localhost:3306/ss6_blog?useSSL=false&useUnicode=true&characterEncoding=utf8");
         datasource.setUsername("root");
-        datasource.setPassword("");
+        datasource.setPassword("12345678");
 
 
         return datasource;
