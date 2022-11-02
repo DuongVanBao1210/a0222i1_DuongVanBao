@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/template/template::head('Shopping')}">
+</head>
+<body>
+
+<nav th:replace="~{/template/template::navbar}"></nav>
+
+<div class="container" style="margin-top: 30px;">
+    <form method="post" th:action="@{/shopping/addCart}" th:object="${product}" >
+    <div class="row"  style="background: white ; border: 2px darkgrey solid; border-radius: 10px; width: 80%; margin: 0 auto; padding: 20px;">
+        <div class="col-sm-5">
+
+                <table border="1" >
+                    <tr>
+                        <td>ID</td>
+                        <td><input type="text" th:name="idProduct" th:value="*{id}" readonly ></td>
+                    </tr>
+
+                    <tr>
+                        <td>Name</td>
+                        <td><input type="text" th:field="*{name}" ></td>
+                    </tr>
+
+                    <tr>
+                        <td>Price</td>
+                        <td><input type="number" th:field="*{price}"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Class Name</td>
+                        <td>
+                            <select th:field="*{className.classId}">
+                                <option value="">All</option>
+                                <option th:each="class : ${classNames}"
+                                        th:value="${class.classId}"
+                                        th:text="${class.name}"
+                                        th:selected="${class.classId.equals(product.className.classId ) }" />
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>ExpiryDate</td>
+                        <td><input type="date" th:field="*{expiryDate}"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Country</td>
+                        <td><input type="text" th:field="*{country}"></td>
+                    </tr>
+
+
+                    <tr>
+                        <td>Status</td>
+                        <td>
+                            <input type="radio" th:field="*{status}" th:value="true" id="male" th:selected="*{status}"  >
+                            <label  for="male"> Sold on</label>
+
+                            <input type="radio" th:field="*{status}" th:value="false" id="female" th:selected="*{!status}" >
+                            <label  for="female"> Sold Out </label>
+                        </td>
+                    </tr>
+
+                    <tr>
+
+                    </tr>
+
+
+
+                </table>
+                <a th:href="@{/product/list/}">Back to list</a>
+                <input type="submit" value="Muaaa Hang">
+
+
+
+        </div>
+
+        <div class="col-sm-7">
+            <img th:src="@{  '/image/' + ${ product.getFilePic()}}">
+        </div>
+    </div>
+    </form>
+</div>
+
+
+</div>
+</body>
+</html>

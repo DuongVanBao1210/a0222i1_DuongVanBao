@@ -38,18 +38,16 @@
 <div class="container">
     <h1 class="title">Create new blog</h1>
     <form th:action="@{/blogs/create}" method="post" th:object="${blog}">
-
         <div class="form-row">
             <div class="col-lg-12 mb-4">
                 <label>Title <span class="red"> (*)</span> </label>
                 <input th:field="*{title}" type="text" class="form-control">
             </div>
         </div>
-
         <div class="form-row">
             <div class="col-md-6 mb-4">
                 <label>Ngay bat dau</label>
-                <input th:field="*{dateWrite}" name="customer_birthday" type="date" class="form-control"
+                <input th:field="*{dateWrite}" type="date" class="form-control"
                        placeholder="dd-mm-yyyy" min="1997-01-01" max="2030-12-31" required>
             </div>
 
@@ -61,22 +59,17 @@
             <!--                <option th:value="'false'" th:text="Female"></option>-->
             <!--            </select>-->
             <!--        </div>-->
-
             <div class="col-lg-6 mb-6">
                 <label>Theme<span class="red"> (*)</span> </label>
                 <select th:field="*{category.idTheme}" class="form-control">
-                    <!--                <option value="0"> All</option>-->
                     <option th:each="theme : ${themes}"
                             th:value="${theme.idTheme}"
                             th:text="${theme.nameTheme}"
-                            th:selected="${theme.idTheme == blog.category.idTheme}"
-                    />
+                            th:selected="${theme.idTheme == blog.category.idTheme}">
+                    </option>
                 </select>
             </div>
-
         </div>
-
-
         <div class="form-row">
             <div class="col-lg-12 mb-4">
                 <label>Content <span class="red"> (*)</span> </label>
@@ -84,25 +77,8 @@
                 <textarea rows="5" th:field="*{content}" class="form-control"></textarea>
             </div>
         </div>
-
-
-        <!--    <div class="form-row">  // radio multi-->
-        <!--        <div class="col-lg-12 mb-4">-->
-        <!--            <label>Thong tin di lai <span class="red"> (*)</span> </label>-->
-        <!--            <ul >-->
-        <!--                <li th:each="ty : ${allTypes}" class="list-item">-->
-        <!--                    <input type="radio" th:field="*{vehicle}" th:value="${ty}"  th:text="${ty}" />-->
-        <!--                    &lt;!&ndash;                                    <label th:for="${#ids.prev('type')}" th:text="#{${'seedstarter.type.' + ty}}">Wireframe</label>&ndash;&gt;-->
-        <!--                </li>-->
-        <!--            </ul>-->
-        <!--        </div>-->
-        <!--    </div>-->
-
-
         <input type="submit" class="btn btn-outline-success my-2 my-lg-0" value="Save">
         <input type="button" class="btn btn-outline-success my-2 my-lg-0" value="Go Back" onclick="history.back()"/>
-
-
     </form>
 </div>
 </body>

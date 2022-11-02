@@ -189,30 +189,17 @@
     <div class="box-container">
         <th:block th:each="o : ${blogs}">
             <div class="box">
-
-
                 <div class="column">
                     <div class="card">
                         <h3 th:text="${ o.title}" class="card-title"></h3>
-
                         <span style="display: inline; font-size: 18px; color: grey; font-style: italic ; text-align: left; margin-left: 3px">Category:
                             <span th:text="${o.category.getNameTheme()}"
                                   class=" theme card-subtitle mb-2 text-muted ml-2 ">  </span>
-                            <span style="float: right; margin-right: 3px" th:text="${o.dateWrite}"></span>
+                            <span style="float: right" th:text="${o.dateWrite}"></span>
                         </span>
-
-                        <!--                        <span style="display: inline; font-size: 18px; color: grey; font-style: italic ; text-align: left; margin-left: 3px"  >Category:-->
-                        <!--                        <th:block th:each="ca: ${cate}" >-->
-                        <!--                            <span     th:if="${ca.idTheme== o.category.idTheme}" th:text="${ca.nameTheme}" class=" theme card-subtitle mb-2 text-muted ml-2 "     >  </span>-->
-                        <!--                        </th:block>-->
-                        <!--                            <span style="float: right; margin-right: 3px" th:text="${o.dateWrite}"></span>-->
-                        <!--                        </span>-->
-
-
                         <div class="card-body" style="height: 100px; width: 100%;  display:block; margin: 0 ">
                             <h6 th:text="${o.content}"></h6>
                         </div>
-
                         <div style="margin-bottom: 10px; margin-top: 10px">
                             <ul class="exam-container">
                                 <li class="exam-element flex-grow-ele1" style="flex-grow: 5;">
@@ -222,7 +209,6 @@
                                         </button>
                                     </a>
                                 </li>
-
                                 <li class="exam-element flex-grow-ele2" style="flex-grow: 5;">
                                     <a>
                                         <button
@@ -235,23 +221,12 @@
                                         </button>
                                     </a>
                                 </li>
-
-                                <!--                                <li class="exam-element flex-grow-ele2" style="flex-grow: 5;" >-->
-                                <!--                                    <a onclick="return confirm('Bạn có chắc chắn muốn xoá？');"-->
-                                <!--                                       th:href="@{/blogs/delete(id=${o.id})}"  >-->
-                                <!--                                        <button class="btn btn-primary btn-lg" style="background: orange;color: white; width: 80px"> Xoa </button>  </a>-->
-                                <!--                                </li>-->
-
-
                             </ul>
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </th:block>
-
     </div>
 
     <div class="modal fade" id="modalDelete" data-backdrop="static" data-keyboard="false" tabindex="-1"

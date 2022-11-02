@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/template/template::head('Shopping')}">
+</head>
+<body>
+
+<nav th:replace="~{/template/template::navbar}"></nav>
+
+<div style="margin-top: 30px">
+    <div class="box-container">
+        <th:block th:each="o : ${products}">
+            <div class="box">
+                <div class="column">
+                    <div class="card">
+                        <h3 th:text="${ o.name}" class="card-title"></h3>
+
+                        <div class="card-body" style="height: 150px; width: 100%;  display:block; margin: 0px; padding: 0px ">
+                           <a th:href="@{/shopping/detail(id=${o.id})}">
+                               <img th:src="@{  '/image/' + ${ o.getFilePic()}}" style="width: 150px; height: 150px; text-align: center">
+                           </a>
+                        </div>
+
+                        <div >
+                            <ul class="exam-container">
+                                <li class="exam-element flex-grow-ele1" style="flex-grow: 5;">
+                                    <span style="display: inline; font-size: 18px; color: grey; font-style: italic ; text-align: left; margin-left: 3px">Category:</span>
+                                    <span th:text="${o.className.name}" class=" theme card-subtitle   mb-2 text-muted ml-2" ; style="display: inline; font-size: 18px; color: grey; font-style:italic">  </span>
+                                </li>
+                                <li class="exam-element flex-grow-ele2" style="flex-grow: 5;">
+                                    <span th:text="${o.price}" style="float: right; margin-right: 3px" ></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </th:block>
+
+    </div>
+
+
+
+
+</div>
+
+
+</body>
+
+</html>
