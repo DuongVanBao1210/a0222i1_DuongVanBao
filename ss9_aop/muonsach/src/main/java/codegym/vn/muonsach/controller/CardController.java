@@ -51,8 +51,6 @@ public class CardController {
     public String create(@RequestParam(value = "idBook", defaultValue = "0") String idBookAA,Model model) {
 
         model.addAttribute("card", new LibraryCard());
-//        Long id = Long.parseLong(idBookAA);
-//        Book book = bookService.getById(id);
         List<Book> books  = bookService.getListBook();
         model.addAttribute("books", books);
         model.addAttribute("idssss", Long.parseLong(idBookAA));
@@ -68,9 +66,6 @@ public class CardController {
             model.addAttribute("books", books);
             return "card/create";
         }
-        Book book = bookService.getById(Long.parseLong(idBook));
-        int sluong = book.getQuantity();
-        book.setQuantity(sluong - 1);
         cardService.save(card);
         return "redirect:/cards/";
 

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body class="container">
+<div th:if="${feedback}">
+    <h3>Feedbacks</h3>
+    <th:block th:each="fb : ${feedbacks}">
+        <span th:text="${fb.author}"/> rate this photo <span th:text="${fb.rate}"/> star(s) and comment that <span th:text="${fb.comment}"/>.
+        <br>
+    </th:block>
+</div>
+
+</body>
+</html>
