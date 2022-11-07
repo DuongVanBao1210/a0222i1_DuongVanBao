@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{template/template::header('List customer')}">
+</head>
+<body>
+<div th:replace="~{template/template::pageloader}"></div>
+<nav th:replace="~{template/template::navbar}"></nav>
+<section th:replace="~{template/layout::sidebar}"></section>
+
+<section class="content">
+    <div class="container-fluid">
+        <!-- Vertical Layout -->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            Blog
+                        </h2>
+                    </div>
+                    <div class="body table-responsive">
+                        <div class="box-container" id="result" >
+
+
+                            <th:block th:each="o : ${blogs}">
+                                <div class="box">
+                                    <div class="column">
+                                        <div class="card">
+                                            <h3 th:text="${ o.title}" class="card-title"></h3>
+
+                                            <span style="display: inline; font-size: 18px; color: grey; font-style: italic ; text-align: left; margin-left: 3px">Category:
+                            <span th:text="${o.category.getNameTheme()}"
+                                  class=" theme card-subtitle mb-2 text-muted ml-2 ">  </span>
+                            <span style="float: right; margin-right: 3px" th:text="${o.dateWrite}"></span>
+                        </span>
+
+                                            <div class="card-body" style="height: 100px; width: 100%;  display:block; margin: 0 ">
+                                                <h6 th:text="${o.content}"></h6>
+                                            </div>
+
+                                            <div style="margin-bottom: 10px; margin-top: 10px">
+                                                <ul class="exam-container">
+                                                    <li class="exam-element flex-grow-ele1" style="flex-grow: 5;">
+                                                        <a th:href="@{/blogs/detail(id=${o.id})}">
+                                                            <button class="btn btn-primary btn-lg"
+                                                                    style="background: orange;color: white; width: 80px"> Xem
+                                                            </button>
+                                                        </a>
+                                                    </li>
+
+                                                    <li class="exam-element flex-grow-ele2" style="flex-grow: 5;">
+                                                        <a>
+                                                            <button
+                                                                    th:onclick="showModelDelete( [[${o.id}]] ,[[${o.title}]])"
+                                                                    class="btn btn-primary btn-lg"
+                                                                    style="background: orange;color: white; width: 80px"
+                                                                    data-toggle="modal"
+                                                                    data-target="#modalDelete">
+                                                                Xóa
+                                                            </button>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </th:block>
+
+                        </div>
+
+                        <div class="modal fade" id="modalDelete" data-backdrop="static" data-keyboard="false" tabindex="-1"
+                             aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <form  id="modelForm" >
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="staticBackdropLabel">Thong Bao</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+
+                                        <div class="modal-body">
+                                            <input hidden type="text" id="idDelete" name="idDelete">
+                                            <span>Ban co muon xoa </span>
+                                            <span class="text-danger" id="nameDelete"></span> khong?<span/>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary" onclick="deleteBlog()">Delete</button>
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <script>
+                            function showModelDelete(id, name) {
+                                document.getElementById("idDelete").value = id;
+                                document.getElementById("nameDelete").innerText = name;
+                            }
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div th:replace="~{template/template::script}"></div>
+<div th:replace="~{template/template::footer}"></div>
+</body>
+</html>

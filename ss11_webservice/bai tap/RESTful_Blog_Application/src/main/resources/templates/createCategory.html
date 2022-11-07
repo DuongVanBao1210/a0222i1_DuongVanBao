@@ -1,0 +1,25 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{template/template::header('List')}">
+</head>
+<body>
+<div th:replace="~{template/template::pageloader}"></div>
+<nav th:replace="~{template/template::navbar}"></nav>
+<section th:replace="~{template/layout::sidebar}"></section>
+<div class="container">
+    <h1 class="title">Create new category</h1>
+    <form th:action="@{/category/create}" method="post" th:object="${category}">
+        <div class="form-row">
+            <div class="col-lg-12 mb-4">
+                <label>Name <span class="red"> (*)</span> </label>
+                <!--            <input type="text"  th:field="*{content}"  class="form-control">-->
+                <textarea rows="5" th:field="*{nameTheme}" class="form-control"></textarea>
+            </div>
+        </div>
+        <input type="submit" class="btn btn-outline-success my-2 my-lg-0" value="Save">
+        <input type="button" class="btn btn-outline-success my-2 my-lg-0" value="Go Back" onclick="history.back()"/>
+    </form>
+</div>
+<div th:replace="~{template/template::script}"></div>
+<div th:replace="~{template/template::footer}"></div>
+</body>
+</html>

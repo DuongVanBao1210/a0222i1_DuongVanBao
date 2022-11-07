@@ -1,0 +1,57 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{template/template::header('List')}">
+</head>
+<body>
+<div th:replace="~{template/template::pageloader}"></div>
+<nav th:replace="~{template/template::navbar}"></nav>
+<section th:replace="~{template/layout::sidebar}"></section>
+<div class="container">
+
+    <h1 class="title">Detail new blog</h1>
+
+    <form th:action="@{/blogs/edit}" method="post" th:object="${blog}">
+
+        <input th:field="*{id}" hidden type="text">
+
+        <div class="form-row">
+            <div class="col-lg-12 mb-4">
+                <label>Title <span class="red"> (*)</span> </label>
+                <input th:field="*{title}" type="text" class="form-control">
+            </div>
+        </div>
+
+
+        <div class="form-row">
+            <div class="col-md-6 mb-4">
+                <label>Ngay bat dau</label>
+                <input th:field="*{dateWrite}" name="customer_birthday" type="date" class="form-control"
+                       placeholder="dd-mm-yyyy" min="1997-01-01" max="2030-12-31" required>
+            </div>
+            <div class="col-lg-6 mb-6">
+                <label>Theme<span class="red"> (*)</span> </label>
+                <select th:field="*{category.idTheme}" class="form-control">
+                    <!--                <option value="0"> All</option>-->
+                    <option th:each="theme : ${themes}"
+                            th:value="${theme.idTheme}"
+                            th:text="${theme.nameTheme}"
+                            th:selected="${theme.idTheme == blog.category.idTheme}"
+                    />
+                </select>
+            </div>
+
+        </div>
+
+        <div class="form-row">
+            <div class="col-lg-12 mb-4">
+                <label>Content <span class="red"> (*)</span> </label>
+                <input type="text" th:field="*{content}" class="form-control">
+            </div>
+        </div>
+        <input type="submit" class="btn btn-outline-success my-2 my-lg-0" value="Edit">
+        <input type="button" class="btn btn-outline-success my-2 my-lg-0" value="Go Back" onclick="history.back()"/>
+    </form>
+</div>
+<div th:replace="~{template/template::script}"></div>
+<div th:replace="~{template/template::footer}"></div>
+</body>
+</html>
